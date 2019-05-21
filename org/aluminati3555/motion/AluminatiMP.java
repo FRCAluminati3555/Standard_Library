@@ -34,11 +34,6 @@ public interface AluminatiMP {
     public double[][] getPoints();
 
     /**
-     * Returns the final heading after the motion profile is done
-     */
-    public double getFinalHeading();
-
-    /**
      * Returns true if the motion profile should run forward, false for running the
      * motors backward. Warning running it backward may cause undefined behavior.
      */
