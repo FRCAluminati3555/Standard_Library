@@ -19,4 +19,4 @@ This library provides an easy way to interface with WPILIB.  It also includes so
  # Features in Development
   - A system to load motion profiles from GZIP files (position, velocity, duration, and heading)
   - A system to load the motion profiles onto a motor
-  - A motion profile execution with Pigeon gyro PID
+  - A motion profile implementation for the Talon SRX with Pigeon gyro PID
