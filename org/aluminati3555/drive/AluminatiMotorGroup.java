@@ -34,6 +34,9 @@ public class AluminatiMotorGroup {
     private AluminatiTalonSRX master;
     private AluminatiTalonSRX[] motors;
 
+    // Inverted
+    private boolean inverted;
+
     /**
      * Returns the master
      */
@@ -48,6 +51,32 @@ public class AluminatiMotorGroup {
      */
     public AluminatiTalonSRX[] getMotors() {
         return motors;
+    }
+
+    /**
+     * Returns true if the drive is inverted
+     * 
+     * @return
+     */
+    public boolean getInverted() {
+        return inverted;
+    }
+
+    /**
+     * Sets the drive as inverted
+     */
+    public void setInverted(boolean inverted) {
+        this.inverted = inverted;
+
+        if (inverted) {
+            for (int i = 0; i < motors.length; i++) {
+                motors[i].setInverted(true);
+            }
+        } else {
+            for (int i = 0; i < motors.length; i++) {
+                motors[i].setInverted(false);
+            }
+        }
     }
 
     /**
@@ -72,7 +101,7 @@ public class AluminatiMotorGroup {
      */
     public AluminatiMotorGroup(AluminatiTalonSRX master, AluminatiTalonSRX... followers) {
         this.master = master;
-        
+
         AluminatiTalonSRX[] motors = new AluminatiTalonSRX[followers.length + 1];
         motors[0] = master;
 
@@ -80,5 +109,14 @@ public class AluminatiMotorGroup {
             motors[i] = followers[i - 1];
             followers[i - 1].follow(master);
         }
+    }
+
+    /**
+     * Allows all of the drive motors to be inverted
+     */
+    public AluminatiMotorGroup(boolean inverted, AluminatiTalonSRX master, AluminatiTalonSRX... followers) {
+        this(master, followers);
+
+        setInverted(inverted);
     }
 }
