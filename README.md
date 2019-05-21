@@ -23,3 +23,5 @@ This library provides an easy way to interface with WPILIB.  It also includes so
 # Dependencies
   - WPILIB
   - CTRE Phoenix Library
+# Examples
+  - https://github.com/FRCAluminati3555/Standard_Library_Example
