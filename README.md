@@ -2,6 +2,8 @@
 
 This library provides an easy way to interface with WPILIB.  It also includes some helper classes for programming a robot.  The library includes various wrapper classes to ease programming and to make the robot more reliable (e.i. setting factory defaults).
 
+![Robot.java](https://github.com/FRCAluminati3555/Standard_Library/raw/master/wiki/robot_class.png)
+
 # Features
   - A static class that contains the library version and contains various settings that can be modified at runtime
   - A drive helper class adapted from Team 254's code: It supports both arcade and cheesy drive
