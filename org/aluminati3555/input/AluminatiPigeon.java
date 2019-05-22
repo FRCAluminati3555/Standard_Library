@@ -47,7 +47,6 @@ public class AluminatiPigeon extends PigeonIMU implements AluminatiCriticalDevic
     private void setupPigeon() {
         // Reset
         this.configFactoryDefault();
-        this.clearStickyFaults();
 
         // Zero gyro
         this.setYaw(0);

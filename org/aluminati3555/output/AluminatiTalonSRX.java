@@ -76,10 +76,10 @@ public class AluminatiTalonSRX extends TalonSRX implements AluminatiPoweredDevic
         }
     }
 
-    public AluminatiTalonSRX(int canID) {
-        super(canID);
-        faults = new Faults();
-
+    /**
+     * Initializes talon
+     */
+    private void setupTalon() {
         // Check firmware version
         checkFirmwareVersion();
 
@@ -91,5 +91,15 @@ public class AluminatiTalonSRX extends TalonSRX implements AluminatiPoweredDevic
 
         // Clear mp warning
         this.clearMotionProfileHasUnderrun();
+
+        // Configure deadband
+        this.configNeutralDeadband(AluminatiData.deadband);
+    }
+
+    public AluminatiTalonSRX(int canID) {
+        super(canID);
+        faults = new Faults();
+
+        setupTalon();
     }
 }

@@ -117,7 +117,7 @@ public class AluminatiVictorSPX extends VictorSPX implements AluminatiPoweredDev
     }
 
     /**
-     * Returns true if  the motor controller is ok
+     * Returns true if the motor controller is ok
      */
     public boolean isOK() {
         this.getFaults(faults);
@@ -136,14 +136,9 @@ public class AluminatiVictorSPX extends VictorSPX implements AluminatiPoweredDev
     }
 
     /**
-     * Basic constructor with no current warning and no ability to monitor current
-     * 
-     * @param canID The can id of the motor controller
+     * Initializes the motor controller
      */
-    public AluminatiVictorSPX(int canID) {
-        super(canID);
-        faults = new Faults();
-
+    private void setupVictor() {
         // Check firmware version
         checkFirmwareVersion();
 
@@ -152,6 +147,21 @@ public class AluminatiVictorSPX extends VictorSPX implements AluminatiPoweredDev
 
         // Clear faults
         this.clearStickyFaults();
+
+        // Set deadband
+        this.configNeutralDeadband(AluminatiData.deadband);
+    }
+
+    /**
+     * Basic constructor with no current warning and no ability to monitor current
+     * 
+     * @param canID The can id of the motor controller
+     */
+    public AluminatiVictorSPX(int canID) {
+        super(canID);
+        faults = new Faults();
+
+        setupVictor();
     }
 
     /**

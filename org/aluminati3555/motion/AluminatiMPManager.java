@@ -49,6 +49,7 @@
 package org.aluminati3555.motion;
 
 import com.ctre.phoenix.motion.BufferedTrajectoryPointStream;
+import com.ctre.phoenix.motion.MotionProfileStatus;
 import com.ctre.phoenix.motion.TrajectoryPoint;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -76,6 +77,8 @@ public class AluminatiMPManager {
 
     private BufferedTrajectoryPointStream mpBuffer;
     private TalonSRXConfiguration talonConfig;
+
+    private MotionProfileStatus mpStatus;
 
     /**
      * Loads the motion profile
@@ -128,8 +131,6 @@ public class AluminatiMPManager {
 
         talonConfig.auxiliaryPID.selectedFeedbackSensor = FeedbackDevice.RemoteSensor0;
 
-        talonConfig.neutralDeadband = AluminatiData.deadband;
-
         talonConfig.slot0.kF = AluminatiData.encoderF;
         talonConfig.slot0.kP = AluminatiData.encoderP;
         talonConfig.slot0.kI = AluminatiData.encoderI;
@@ -171,12 +172,22 @@ public class AluminatiMPManager {
     }
 
     /**
+     * Returns true if the points are not being transmitted to the motor controller
+     * fast enough
+     */
+    public boolean isMPUnderrun() {
+        masterTalon.getMotionProfileStatus(mpStatus);
+        return mpStatus.isUnderrun;
+    }
+
+    /**
      * Creata a new mp manager
      */
     public AluminatiMPManager(AluminatiMP motionProfile, AluminatiTalonSRX masterTalon, AluminatiPigeon pigeon) {
         this.motionProfile = motionProfile;
         this.masterTalon = masterTalon;
         this.pigeon = pigeon;
+        mpStatus = new MotionProfileStatus();
 
         loadMP();
         configTalon();
