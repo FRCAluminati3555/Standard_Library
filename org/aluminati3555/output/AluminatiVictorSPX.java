@@ -26,6 +26,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.Faults;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import org.aluminati3555.data.AluminatiData;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
@@ -124,6 +126,16 @@ public class AluminatiVictorSPX extends VictorSPX implements AluminatiPoweredDev
     }
 
     /**
+     * Verifies that a firmware version greater than or equal to the minimum is
+     * installed
+     */
+    private void checkFirmwareVersion() {
+        if (this.getFirmwareVersion() < AluminatiData.minVictorSPXFirmwareVersion) {
+            DriverStation.reportWarning(this.toString() + " has too old of firmware (may not work)", false);
+        }
+    }
+
+    /**
      * Basic constructor with no current warning and no ability to monitor current
      * 
      * @param canID The can id of the motor controller
@@ -131,6 +143,9 @@ public class AluminatiVictorSPX extends VictorSPX implements AluminatiPoweredDev
     public AluminatiVictorSPX(int canID) {
         super(canID);
         faults = new Faults();
+
+        // Check firmware version
+        checkFirmwareVersion();
 
         // Restore factory defaults
         this.configFactoryDefault();

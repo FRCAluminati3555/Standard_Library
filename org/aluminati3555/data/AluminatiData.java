@@ -69,4 +69,7 @@ public final class AluminatiData {
 
     // TalonSRX minimum firmware version
     public static int minTalonSRXFirmareVersion = 0;
+
+    // VictorSPX minimum firmware version
+    public static int minVictorSPXFirmwareVersion = 0;
 }
