@@ -66,4 +66,7 @@ public final class AluminatiData {
 
     // Pigeon
     public static double pigeonTurnUnitsPerDegree = 8192 / 360.0;
+
+    // TalonSRX minimum firmware version
+    public static int minTalonSRXFirmareVersion = 0;
 }

@@ -24,6 +24,7 @@ package org.aluminati3555.input;
 
 import com.ctre.phoenix.sensors.PigeonIMU;
 
+import org.aluminati3555.output.AluminatiCriticalDevice;
 import org.aluminati3555.output.AluminatiTalonSRX;
 
 /**
@@ -31,7 +32,7 @@ import org.aluminati3555.output.AluminatiTalonSRX;
  * 
  * @author Caleb Heydon
  */
-public class AluminatiPigeon extends PigeonIMU {
+public class AluminatiPigeon extends PigeonIMU implements AluminatiCriticalDevice {
     /**
      * Returns a helpful string
      */
@@ -59,6 +60,14 @@ public class AluminatiPigeon extends PigeonIMU {
         double[] gyroData = new double[3];
         this.getRawGyro(gyroData);
         return gyroData[0];
+    }
+
+    /**
+     * Returns true if the gyro is ok
+     */
+    public boolean isOK() {
+        boolean ok = (this.getState() == PigeonState.Ready);
+        return ok;
     }
 
     /**

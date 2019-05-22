@@ -22,7 +22,13 @@
 
 package org.aluminati3555.output;
 
+import com.ctre.phoenix.motorcontrol.Faults;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
+import org.aluminati3555.data.AluminatiData;
+import org.aluminati3555.output.AluminatiCriticalDevice;
+
+import edu.wpi.first.wpilibj.DriverStation;
 
 /**
  * This is a very simple wrapper class for the Talon SRX
@@ -30,7 +36,10 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
  * @author Caleb Heydon
  */
 
-public class AluminatiTalonSRX extends TalonSRX implements AluminatiPoweredDevice {
+public class AluminatiTalonSRX extends TalonSRX implements AluminatiPoweredDevice, AluminatiCriticalDevice {
+    // Fault buffer
+    private Faults faults;
+
     /**
      * Provides a useful string about the motor controller
      */
@@ -39,8 +48,40 @@ public class AluminatiTalonSRX extends TalonSRX implements AluminatiPoweredDevic
         return "[TalonSRX:" + this.getDeviceID() + "]";
     }
 
+    /**
+     * Returns true if the encoder is ok
+     */
+    public boolean isEncoderOK() {
+        boolean ok = (this.getSensorCollection().getPulseWidthRiseToRiseUs() != 0);
+        return ok;
+    }
+
+    /**
+     * Returns true if the talon is ok
+     */
+    public boolean isOK() {
+        this.getFaults(faults);
+        boolean ok = isEncoderOK() && (!faults.hasAnyFault());
+
+        return ok;
+    }
+
+    /**
+     * Verifies that a firmware version greater than or equal to the minimum is
+     * installed
+     */
+    private void checkFirmwareVersion() {
+        if (this.getFirmwareVersion() < AluminatiData.minTalonSRXFirmareVersion) {
+            DriverStation.reportWarning(this.toString() + " has too old of firmware (may not work)", false);
+        }
+    }
+
     public AluminatiTalonSRX(int canID) {
         super(canID);
+        faults = new Faults();
+
+        // Check firmware version
+        checkFirmwareVersion();
 
         // Restore factory settings
         this.configFactoryDefault();

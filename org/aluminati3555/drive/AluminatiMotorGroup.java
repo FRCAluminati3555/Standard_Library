@@ -94,6 +94,13 @@ public class AluminatiMotorGroup {
     }
 
     /**
+     * Returns true if the encoder on the master talon is ok
+     */
+    public boolean isEncoderOK() {
+        return master.isEncoderOK();
+    }
+
+    /**
      * Makes the follower motors follow the master
      * 
      * @param master

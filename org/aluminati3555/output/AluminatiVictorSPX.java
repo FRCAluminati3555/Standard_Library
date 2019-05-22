@@ -23,6 +23,7 @@
 package org.aluminati3555.output;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.Faults;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -34,7 +35,10 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
  * 
  * @author Caleb Heydon
  */
-public class AluminatiVictorSPX extends VictorSPX implements AluminatiPoweredDevice {
+public class AluminatiVictorSPX extends VictorSPX implements AluminatiPoweredDevice, AluminatiCriticalDevice {
+    // Faults
+    private Faults faults;
+
     // PDP
     private PowerDistributionPanel pdp;
     private int pdpChannel;
@@ -111,12 +115,22 @@ public class AluminatiVictorSPX extends VictorSPX implements AluminatiPoweredDev
     }
 
     /**
+     * Returns true if  the motor controller is ok
+     */
+    public boolean isOK() {
+        this.getFaults(faults);
+
+        return !faults.hasAnyFault();
+    }
+
+    /**
      * Basic constructor with no current warning and no ability to monitor current
      * 
      * @param canID The can id of the motor controller
      */
     public AluminatiVictorSPX(int canID) {
         super(canID);
+        faults = new Faults();
 
         // Restore factory defaults
         this.configFactoryDefault();
