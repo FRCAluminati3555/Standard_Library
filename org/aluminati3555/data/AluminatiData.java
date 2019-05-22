@@ -35,7 +35,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
  */
 public final class AluminatiData {
     // Library
-    public static final double LIBRARY_VERSION = 0.1; // Beta
+    public static final int LIBRARY_VERSION = 0; // Beta
 
     // Robot delay
     public static double robotDelay = 0.02;
