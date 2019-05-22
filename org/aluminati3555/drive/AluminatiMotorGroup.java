@@ -102,7 +102,7 @@ public class AluminatiMotorGroup {
     public AluminatiMotorGroup(AluminatiTalonSRX master, AluminatiTalonSRX... followers) {
         this.master = master;
 
-        AluminatiTalonSRX[] motors = new AluminatiTalonSRX[followers.length + 1];
+        motors = new AluminatiTalonSRX[followers.length + 1];
         motors[0] = master;
 
         for (int i = 1; i < motors.length; i++) {
