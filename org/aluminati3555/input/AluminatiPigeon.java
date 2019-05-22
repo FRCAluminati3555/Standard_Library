@@ -42,14 +42,19 @@ public class AluminatiPigeon extends PigeonIMU implements AluminatiCriticalDevic
     }
 
     /**
+     * Zeros the yaw
+     */
+    public void zeroYaw() {
+        // Zero gyro
+        this.setYaw(0);
+    }
+
+    /**
      * Does some basic initialization
      */
     private void setupPigeon() {
         // Reset
         this.configFactoryDefault();
-
-        // Zero gyro
-        this.setYaw(0);
     }
 
     /**
