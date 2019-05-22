@@ -37,7 +37,7 @@ public class AluminatiRobot extends TimedRobot {
      */
     @Override
     public String toString() {
-        return "[AluminatiRobot] delay: " + this.getPeriod();
+        return "[AluminatiRobot] libraryVersion: " + AluminatiData.LIBRARY_VERSION + ", delay: " + this.getPeriod();
     }
 
     /**

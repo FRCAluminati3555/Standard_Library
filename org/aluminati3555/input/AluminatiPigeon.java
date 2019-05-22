@@ -53,6 +53,15 @@ public class AluminatiPigeon extends PigeonIMU {
     }
 
     /**
+     * Returns the yaw
+     */
+    public double getYaw() {
+        double[] gyroData = new double[3];
+        this.getRawGyro(gyroData);
+        return gyroData[0];
+    }
+
+    /**
      * Use this for when it is attached to a talonSRX
      * @param talon
      */
