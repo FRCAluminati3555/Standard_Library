@@ -23,6 +23,7 @@ This library provides an easy way to interface with WPILIB.  It also includes so
   - A system to load the motion profiles onto a motor
   - A motion profile implementation for the Talon SRX with Pigeon gyro PID
 # Dependencies
+  - Java 11
   - WPILIB
   - CTRE Phoenix Library
 # Examples
