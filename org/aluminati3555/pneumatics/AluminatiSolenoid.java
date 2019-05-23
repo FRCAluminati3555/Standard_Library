@@ -25,8 +25,18 @@ package org.aluminati3555.pneumatics;
 import edu.wpi.first.wpilibj.Solenoid;
 
 public class AluminatiSolenoid extends Solenoid {
+    // PCM
+    private int pcm;
+
     // Port
     private int port;
+
+    /**
+     * Returns the pcm in use
+     */
+    public int getPCM() {
+        return pcm;
+    }
 
     /**
      * Gets the port of the solenoid
@@ -84,6 +94,13 @@ public class AluminatiSolenoid extends Solenoid {
     public AluminatiSolenoid(int port) {
         super(port);
 
+        this.port = port;
+    }
+
+    public AluminatiSolenoid(int pcm, int port) {
+        super(pcm, port);
+
+        this.pcm = pcm;
         this.port = port;
     }
 }

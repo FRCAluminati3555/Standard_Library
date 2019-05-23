@@ -22,6 +22,7 @@
 
 package org.aluminati3555.output;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.Faults;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
@@ -94,6 +95,9 @@ public class AluminatiTalonSRX extends TalonSRX implements AluminatiPoweredDevic
 
         // Configure deadband
         this.configNeutralDeadband(AluminatiData.deadband);
+
+        // Disable
+        this.set(ControlMode.PercentOutput, 0);
     }
 
     public AluminatiTalonSRX(int canID) {

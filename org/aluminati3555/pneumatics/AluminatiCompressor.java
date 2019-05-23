@@ -31,6 +31,15 @@ import edu.wpi.first.wpilibj.Compressor;
  * @author Caleb Heydon
  */
 public class AluminatiCompressor extends Compressor {
+    private int pcm;
+
+    /**
+     * Returns the pcm in use
+     */
+    public int getPCM() {
+        return pcm;
+    }
+
     /**
      * Returns a usefule string about the compressor
      */
@@ -52,6 +61,12 @@ public class AluminatiCompressor extends Compressor {
      */
     public AluminatiCompressor() {
         super();
+
+        this.setClosedLoopControl(true);
+    }
+
+    public AluminatiCompressor(int pcm) {
+        super(pcm);
 
         this.setClosedLoopControl(true);
     }

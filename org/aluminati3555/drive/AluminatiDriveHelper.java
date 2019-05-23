@@ -23,7 +23,7 @@
 /**
  * License for original code:
  * 
- * Copyright (c) 2016 Team 254
+ * Copyright (c) 2018 Team 254
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -55,12 +55,32 @@ package org.aluminati3555.drive;
  */
 public class AluminatiDriveHelper {
     // Constants
-    public static final double THROTTLE_DEADBAND = 0.02;
+    private static final double THROTTLE_DEADBAND = 0.02;
     private static final double WHEEL_DEADBAND = 0.02;
-    private static final double TURN_SENSITIVITY = 1.0;
 
-    // Quick stop accumulator
-    private double quickStopAccumulator;
+    // These factor determine how fast the wheel traverses the "non linear" sine
+    // curve.
+    private static final double HIGH_WHEEL_NONLINEARITY = 0.65;
+    private static final double LOW_WHEEL_NONLINEARITY = 0.5;
+
+    private static final double HIGH_NEG_INERTIA_SCALAR = 4.0;
+
+    private static final double LOW_NEG_INERTIA_THRESHOLD = 0.65;
+    private static final double LOW_NEG_INERTIA_TURN_SCALAR = 3.5;
+    private static final double LOW_NEG_INERTIA_CLOSE_SCALAR = 4.0;
+    private static final double kLowNegInertiaFarScalar = 5.0;
+
+    private static final double HIGH_SENSITIVITY = 0.65;
+    private static final double LOW_SENSITIVITY = 0.65;
+
+    private static final double quickStopDeadband = 0.5;
+    private static final double quickStopWeight = 0.1;
+    private static final double quickStopScalar = 5.0;
+
+    // Data
+    private double mOldWheel;
+    private double mQuickStopAccumlator;
+    private double mNegInertiaAccumlator;
 
     // Output
     private double left;
@@ -98,35 +118,94 @@ public class AluminatiDriveHelper {
      * @param throttle    The forward and backward power
      * @param wheel       The turn
      * @param isQuickTurn Use this for turning in place and for arcade drive
+     * @param isHighGear  Set this to true for single speed
      */
-    public void aluminatiDrive(double throttle, double wheel, boolean isQuickTurn) {
+    public void aluminatiDrive(double throttle, double wheel, boolean isQuickTurn, boolean isHighGear) {
         wheel = handleDeadband(wheel, WHEEL_DEADBAND);
         throttle = handleDeadband(throttle, THROTTLE_DEADBAND);
 
-        double overPower;
-        double angularPower;
+        double negInertia = wheel - mOldWheel;
+        mOldWheel = wheel;
 
+        double wheelNonLinearity;
+        if (isHighGear) {
+            wheelNonLinearity = HIGH_WHEEL_NONLINEARITY;
+            final double denominator = Math.sin(Math.PI / 2.0 * wheelNonLinearity);
+            // Apply a sin function that's scaled to make it feel better.
+            wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / denominator;
+            wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / denominator;
+        } else {
+            wheelNonLinearity = LOW_WHEEL_NONLINEARITY;
+            final double denominator = Math.sin(Math.PI / 2.0 * wheelNonLinearity);
+            // Apply a sin function that's scaled to make it feel better.
+            wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / denominator;
+            wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / denominator;
+            wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / denominator;
+        }
+
+        double leftPwm, rightPwm, overPower;
+        double sensitivity;
+
+        double angularPower;
+        double linearPower;
+
+        // Negative inertia!
+        double negInertiaScalar;
+        if (isHighGear) {
+            negInertiaScalar = HIGH_NEG_INERTIA_SCALAR;
+            sensitivity = HIGH_SENSITIVITY;
+        } else {
+            if (wheel * negInertia > 0) {
+                // If we are moving away from 0.0, aka, trying to get more wheel.
+                negInertiaScalar = LOW_NEG_INERTIA_TURN_SCALAR;
+            } else {
+                // Otherwise, we are attempting to go back to 0.0.
+                if (Math.abs(wheel) > LOW_NEG_INERTIA_THRESHOLD) {
+                    negInertiaScalar = kLowNegInertiaFarScalar;
+                } else {
+                    negInertiaScalar = LOW_NEG_INERTIA_CLOSE_SCALAR;
+                }
+            }
+            sensitivity = LOW_SENSITIVITY;
+        }
+        double negInertiaPower = negInertia * negInertiaScalar;
+        mNegInertiaAccumlator += negInertiaPower;
+
+        wheel = wheel + mNegInertiaAccumlator;
+        if (mNegInertiaAccumlator > 1) {
+            mNegInertiaAccumlator -= 1;
+        } else if (mNegInertiaAccumlator < -1) {
+            mNegInertiaAccumlator += 1;
+        } else {
+            mNegInertiaAccumlator = 0;
+        }
+        linearPower = throttle;
+
+        // Quickturn!
         if (isQuickTurn) {
-            if (Math.abs(throttle) < 0.2) {
-                double alpha = 0.1;
-                quickStopAccumulator = (1 - alpha) * quickStopAccumulator + alpha * limit(wheel, 1.0) * 2;
+            if (Math.abs(linearPower) < quickStopDeadband) {
+                double alpha = quickStopWeight;
+                mQuickStopAccumlator = (1 - alpha) * mQuickStopAccumlator
+                        + alpha * limit(wheel, 1.0) * quickStopScalar;
             }
             overPower = 1.0;
             angularPower = wheel;
         } else {
             overPower = 0.0;
-            angularPower = Math.abs(throttle) * wheel * TURN_SENSITIVITY - quickStopAccumulator;
-            if (quickStopAccumulator > 1) {
-                quickStopAccumulator -= 1;
-            } else if (quickStopAccumulator < -1) {
-                quickStopAccumulator += 1;
+            angularPower = Math.abs(throttle) * wheel * sensitivity - mQuickStopAccumlator;
+            if (mQuickStopAccumlator > 1) {
+                mQuickStopAccumlator -= 1;
+            } else if (mQuickStopAccumlator < -1) {
+                mQuickStopAccumlator += 1;
             } else {
-                quickStopAccumulator = 0.0;
+                mQuickStopAccumlator = 0.0;
             }
         }
 
-        double rightPwm = throttle - angularPower;
-        double leftPwm = throttle + angularPower;
+        rightPwm = leftPwm = linearPower;
+        leftPwm += angularPower;
+        rightPwm -= angularPower;
+
         if (leftPwm > 1.0) {
             rightPwm -= overPower * (leftPwm - 1.0);
             leftPwm = 1.0;

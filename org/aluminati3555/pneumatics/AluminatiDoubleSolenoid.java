@@ -34,9 +34,19 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
  */
 
 public class AluminatiDoubleSolenoid extends DoubleSolenoid {
+    // PCM
+    private int pcm;
+
     // Solenoid ports
     private int forwardPort;
     private int reversePort;
+
+    /**
+     * Returns the pcm in use
+     */
+    public int getPCM() {
+        return pcm;
+    }
 
     /**
      * This method returns the forward port for the double solenoid
@@ -123,6 +133,14 @@ public class AluminatiDoubleSolenoid extends DoubleSolenoid {
         super(forwardPort, reversePort);
 
         // Save ports for later
+        this.forwardPort = forwardPort;
+        this.reversePort = reversePort;
+    }
+
+    public AluminatiDoubleSolenoid(int pcm, int forwardPort, int reversePort) {
+        super(forwardPort, reversePort);
+
+        this.pcm = pcm;
         this.forwardPort = forwardPort;
         this.reversePort = reversePort;
     }

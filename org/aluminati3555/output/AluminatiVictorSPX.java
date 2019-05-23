@@ -150,6 +150,9 @@ public class AluminatiVictorSPX extends VictorSPX implements AluminatiPoweredDev
 
         // Set deadband
         this.configNeutralDeadband(AluminatiData.deadband);
+
+        // Disable
+        this.set(ControlMode.PercentOutput, 0);
     }
 
     /**
