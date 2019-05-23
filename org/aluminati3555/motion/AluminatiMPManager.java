@@ -192,7 +192,8 @@ public class AluminatiMPManager {
     /**
      * Creata a new mp manager
      */
-    public AluminatiMPManager(AluminatiMP motionProfile, AluminatiTalonSRX masterTalon, AluminatiPigeon pigeon, boolean invertGyro) {
+    public AluminatiMPManager(AluminatiMP motionProfile, AluminatiTalonSRX masterTalon, AluminatiPigeon pigeon,
+            boolean invertGyro) {
         this.motionProfile = motionProfile;
         this.masterTalon = masterTalon;
         this.pigeon = pigeon;
