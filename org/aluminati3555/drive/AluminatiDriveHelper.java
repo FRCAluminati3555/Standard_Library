@@ -68,7 +68,7 @@ public class AluminatiDriveHelper {
     private static final double LOW_NEG_INERTIA_THRESHOLD = 0.65;
     private static final double LOW_NEG_INERTIA_TURN_SCALAR = 3.5;
     private static final double LOW_NEG_INERTIA_CLOSE_SCALAR = 4.0;
-    private static final double kLowNegInertiaFarScalar = 5.0;
+    private static final double LOW_NEG_INERTIA_FAR_SCALAR = 5.0;
 
     private static final double HIGH_SENSITIVITY = 0.65;
     private static final double LOW_SENSITIVITY = 0.65;
@@ -161,7 +161,7 @@ public class AluminatiDriveHelper {
             } else {
                 // Otherwise, we are attempting to go back to 0.0.
                 if (Math.abs(wheel) > LOW_NEG_INERTIA_THRESHOLD) {
-                    negInertiaScalar = kLowNegInertiaFarScalar;
+                    negInertiaScalar = LOW_NEG_INERTIA_FAR_SCALAR;
                 } else {
                     negInertiaScalar = LOW_NEG_INERTIA_CLOSE_SCALAR;
                 }
