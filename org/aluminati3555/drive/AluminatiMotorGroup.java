@@ -22,6 +22,7 @@
 
 package org.aluminati3555.drive;
 
+import org.aluminati3555.output.AluminatiCriticalDevice;
 import org.aluminati3555.output.AluminatiTalonSRX;
 
 /**
@@ -29,7 +30,7 @@ import org.aluminati3555.output.AluminatiTalonSRX;
  * 
  * @author Caleb Heydon
  */
-public class AluminatiMotorGroup {
+public class AluminatiMotorGroup implements AluminatiCriticalDevice {
     // Motors
     private AluminatiTalonSRX master;
     private AluminatiTalonSRX[] motors;
@@ -98,6 +99,19 @@ public class AluminatiMotorGroup {
      */
     public boolean isEncoderOK() {
         return master.isEncoderOK();
+    }
+
+    /**
+     * Returns true if this side of the drive is ok
+     */
+    public boolean isOK() {
+        for (int i = 0; i < motors.length; i++) {
+            if (!motors[i].isOK()) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
