@@ -80,6 +80,15 @@ public class AluminatiMPManager {
 
     private MotionProfileStatus mpStatus;
 
+    private boolean invertGyro;
+
+    /**
+     * Returns true if the gyro is inverted
+     */
+    public boolean isGyroInverted() {
+        return invertGyro;
+    }
+
     /**
      * Loads the motion profile
      */
@@ -138,7 +147,7 @@ public class AluminatiMPManager {
         talonConfig.slot0.integralZone = AluminatiData.iZone;
         talonConfig.slot0.closedLoopPeakOutput = AluminatiData.peakOutput;
 
-        talonConfig.slot1.kF = AluminatiData.gyroF;
+        talonConfig.slot1.kF = AluminatiData.gyroF * (invertGyro ? -1 : 1);
         talonConfig.slot1.kP = AluminatiData.gyroP;
         talonConfig.slot1.kI = AluminatiData.gyroI;
         talonConfig.slot1.kD = AluminatiData.gyroD;
@@ -183,10 +192,12 @@ public class AluminatiMPManager {
     /**
      * Creata a new mp manager
      */
-    public AluminatiMPManager(AluminatiMP motionProfile, AluminatiTalonSRX masterTalon, AluminatiPigeon pigeon) {
+    public AluminatiMPManager(AluminatiMP motionProfile, AluminatiTalonSRX masterTalon, AluminatiPigeon pigeon, boolean invertGyro) {
         this.motionProfile = motionProfile;
         this.masterTalon = masterTalon;
         this.pigeon = pigeon;
+        this.invertGyro = invertGyro;
+
         mpStatus = new MotionProfileStatus();
 
         loadMP();
