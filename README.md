@@ -20,10 +20,7 @@ This library provides an easy way to interface with WPILIB.  It also includes so
   - A wrapper class from the Limelight which supports all commonly used features
   - Support for detecting motor controller, encoder, and gyro failures
   - TalonSRX and VictorSPX firmware version validation
-# Features in Development
-  - A system to load motion profiles from GZIP files (position, velocity, duration, and heading)
-  - A system to load the motion profiles onto a motor
-  - A motion profile implementation for the Talon SRX with Pigeon gyro PID
+  - Motion profile arc following using a modified version of BobTrajectory
 # Dependencies
   - Java 11+
   - WPILIB
