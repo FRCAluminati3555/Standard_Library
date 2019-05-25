@@ -147,8 +147,8 @@ public class AluminatiMPManager {
         talonConfig.slot0.integralZone = AluminatiData.iZone;
         talonConfig.slot0.closedLoopPeakOutput = AluminatiData.peakOutput;
 
-        talonConfig.slot1.kF = AluminatiData.gyroF * (invertGyro ? -1 : 1);
-        talonConfig.slot1.kP = AluminatiData.gyroP;
+        talonConfig.slot1.kF = AluminatiData.gyroF;
+        talonConfig.slot1.kP = AluminatiData.gyroP * (invertGyro ? -1 : 1);
         talonConfig.slot1.kI = AluminatiData.gyroI;
         talonConfig.slot1.kD = AluminatiData.gyroD;
         talonConfig.slot1.integralZone = AluminatiData.iZone;
