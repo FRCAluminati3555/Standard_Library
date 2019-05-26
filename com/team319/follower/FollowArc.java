@@ -57,14 +57,13 @@ import com.team319.follower.SrxTrajectory;
 import org.aluminati3555.output.AluminatiTalonSRX;
 
 public class FollowArc {
-
-	int distancePidSlot = 0;
-	int rotationPidSlot = 1;
-	SrxTrajectory trajectory;
-	boolean flipLeftAndRight;
-	boolean flipRobot;
-	BufferedTrajectoryPointStream buffer = new BufferedTrajectoryPointStream();
-	FollowsArc drivetrain;
+	private int distancePidSlot = 0;
+	private int rotationPidSlot = 1;
+	private SrxTrajectory trajectory;
+	private boolean flipLeftAndRight;
+	private boolean flipRobot;
+	private BufferedTrajectoryPointStream buffer = new BufferedTrajectoryPointStream();
+	private FollowsArc drivetrain;
 
 	public FollowArc(FollowsArc drivetrain, SrxTrajectory trajectory) {
 		this(drivetrain, trajectory, false, false);
