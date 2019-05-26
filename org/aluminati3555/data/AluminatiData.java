@@ -22,8 +22,6 @@
 
 package org.aluminati3555.data;
 
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-
 /**
  * This class holds basic information about the robot. The data starts out
  * zeroed and it initialized by the program
@@ -61,7 +59,6 @@ public final class AluminatiData {
     public static double deadband = 0.01;
 
     // Encoders
-    public static FeedbackDevice encoderType = FeedbackDevice.QuadEncoder;
     public static int encoderUnitsPerRotation = 4096;
 
     // Pigeon
