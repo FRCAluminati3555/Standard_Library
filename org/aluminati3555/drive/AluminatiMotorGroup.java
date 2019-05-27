@@ -111,7 +111,7 @@ public class AluminatiMotorGroup implements AluminatiCriticalDevice {
             }
         }
 
-        return true;
+        return isEncoderOK();
     }
 
     /**

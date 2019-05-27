@@ -64,7 +64,7 @@ public class AluminatiTalonSRX extends TalonSRX implements AluminatiPoweredDevic
      */
     public boolean isOK() {
         this.getFaults(faults);
-        boolean ok = isEncoderOK() && (!faults.hasAnyFault()) && versionOK;
+        boolean ok = (!faults.hasAnyFault() && versionOK);
 
         return ok;
     }
