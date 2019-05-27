@@ -69,4 +69,7 @@ public final class AluminatiData {
 
     // VictorSPX minimum firmware version
     public static int minVictorSPXFirmwareVersion = 0;
+
+    // Tipping detection
+    public static double minTippingDegrees = 10;
 }

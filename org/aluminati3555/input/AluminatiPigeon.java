@@ -24,6 +24,7 @@ package org.aluminati3555.input;
 
 import com.ctre.phoenix.sensors.PigeonIMU;
 
+import org.aluminati3555.data.AluminatiData;
 import org.aluminati3555.output.AluminatiCriticalDevice;
 import org.aluminati3555.output.AluminatiTalonSRX;
 
@@ -64,7 +65,25 @@ public class AluminatiPigeon extends PigeonIMU implements AluminatiCriticalDevic
      */
     public double getYaw() {
         double[] gyroData = new double[3];
-        this.getRawGyro(gyroData);
+        this.getYawPitchRoll(gyroData);
+        return gyroData[0];
+    }
+
+    /**
+     * Returns the pitch
+     */
+    public double getPitch() {
+        double[] gyroData = new double[3];
+        this.getYawPitchRoll(gyroData);
+        return gyroData[1];
+    }
+
+    /**
+     * Returns the roll
+     */
+    public double getRoll() {
+        double[] gyroData = new double[3];
+        this.getYawPitchRoll(gyroData);
         return gyroData[0];
     }
 
@@ -74,6 +93,21 @@ public class AluminatiPigeon extends PigeonIMU implements AluminatiCriticalDevic
     public boolean isOK() {
         boolean ok = (this.getState() == PigeonState.Ready);
         return ok;
+    }
+
+    /**
+     * Returns true if the robot is tipping over
+     */
+    public boolean isTipping() {
+        double pitch = Math.abs(this.getPitch());
+        double roll = Math.abs(this.getPitch());
+        double magnitude = Math.sqrt(Math.pow(pitch, 2) + Math.pow(roll, 2));
+
+        if (magnitude >= AluminatiData.minTippingDegrees) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
