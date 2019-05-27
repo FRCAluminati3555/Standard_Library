@@ -41,6 +41,8 @@ public class AluminatiVictorSPX extends VictorSPX implements AluminatiPoweredDev
     // Faults
     private Faults faults;
 
+    private boolean versionOK;
+
     // PDP
     private PowerDistributionPanel pdp;
     private int pdpChannel;
@@ -122,7 +124,7 @@ public class AluminatiVictorSPX extends VictorSPX implements AluminatiPoweredDev
     public boolean isOK() {
         this.getFaults(faults);
 
-        return !faults.hasAnyFault();
+        return (!faults.hasAnyFault() && versionOK);
     }
 
     /**
@@ -131,7 +133,10 @@ public class AluminatiVictorSPX extends VictorSPX implements AluminatiPoweredDev
      */
     private void checkFirmwareVersion() {
         if (this.getFirmwareVersion() < AluminatiData.minVictorSPXFirmwareVersion) {
+            versionOK = false;
             DriverStation.reportWarning(this.toString() + " has too old of firmware (may not work)", false);
+        } else {
+            versionOK = true;
         }
     }
 
