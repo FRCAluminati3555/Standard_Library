@@ -56,7 +56,7 @@ public final class AluminatiData {
     public static int peakOutput = 1;
 
     // Deadband
-    public static double deadband = 0.01;
+    public static double deadband = 0.00001;
 
     // Encoders
     public static int encoderUnitsPerRotation = 4096;
