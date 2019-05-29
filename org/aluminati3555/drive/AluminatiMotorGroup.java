@@ -22,6 +22,8 @@
 
 package org.aluminati3555.drive;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+
 import org.aluminati3555.output.AluminatiCriticalDevice;
 import org.aluminati3555.output.AluminatiTalonSRX;
 
@@ -112,6 +114,24 @@ public class AluminatiMotorGroup implements AluminatiCriticalDevice {
         }
 
         return true;
+    }
+
+    /**
+     * Puts the group into coast mode
+     */
+    public void coast() {
+        for (int i = 0; i < motors.length; i++) {
+            motors[i].setNeutralMode(NeutralMode.Coast);
+        }
+    }
+
+    /**
+     * Puts the group into brake mode
+     */
+    public void brake() {
+        for (int i = 0; i < motors.length; i++) {
+            motors[i].setNeutralMode(NeutralMode.Brake);
+        }
     }
 
     /**
