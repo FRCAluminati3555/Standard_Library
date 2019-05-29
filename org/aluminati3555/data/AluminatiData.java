@@ -39,12 +39,12 @@ public final class AluminatiData {
     public static double robotDelay = 0.02;
 
     // PID constants
-    public static double encoderF = 1023 / 6800.0;
+    public static double encoderF = 1;
     public static double encoderP = 1;
     public static double encoderI = 0;
     public static double encoderD = 0;
 
-    public static double gyroF = 1023 / 6800.0;
+    public static double gyroF = 1;
     public static double gyroP = 1;
     public static double gyroI = 0;
     public static double gyroD = 0;
