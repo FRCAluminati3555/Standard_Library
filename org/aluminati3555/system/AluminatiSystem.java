@@ -20,26 +20,17 @@
  * SOFTWARE.
  */
 
-package org.aluminati3555.auto;
+package org.aluminati3555.system;
 
 /**
- * This interface allows for autonomous tasks to be standardized
+ * This interface is for systems on the robot
  * 
  * @author Caleb Heydon
  */
-public interface AluminatiAutoTask {
+public interface AluminatiSystem {
     /**
-     * Initializes the task
-     */
-    public void start(long timestamp);
-
-    /**
-     * Call this every loop
+     * Updates the system
+     * @param timestamp The timestamp in milliseconds
      */
     public void update(long timestamp);
-
-    /**
-     * Returns true when the task is complete
-     */
-    public boolean isComplete();
 }
