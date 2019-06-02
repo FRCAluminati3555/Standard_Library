@@ -42,4 +42,9 @@ public interface AluminatiAutoTask {
      * Returns true when the task is complete
      */
     public boolean isComplete();
+
+    /**
+     * Stops the auto task
+     */
+    public void stop();
 }
