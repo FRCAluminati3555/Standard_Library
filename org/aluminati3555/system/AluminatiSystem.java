@@ -31,6 +31,7 @@ public interface AluminatiSystem {
     /**
      * Updates the system
      * @param timestamp The timestamp in milliseconds
+     * @param enabled True if the robot is enabled
      */
-    public void update(long timestamp);
+    public void update(long timestamp, boolean enabled);
 }
