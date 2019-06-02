@@ -271,6 +271,17 @@ public class AluminatiDrive implements AluminatiCriticalDevice, FollowsArc {
     }
 
     /**
+     * Manuall uses arcade drive with no squared output, control coefficient, or
+     * drive inversion
+     */
+    public void manualArcadeDrive(double x, double y) {
+        driveHelper.aluminatiDrive(-y, x, true, true);
+
+        left.getMaster().set(ControlMode.PercentOutput, driveHelper.getLeftPower());
+        right.getMaster().set(ControlMode.PercentOutput, driveHelper.getRightPower());
+    }
+
+    /**
      * Zeros the encoders
      */
     public void zeroEncoders() {

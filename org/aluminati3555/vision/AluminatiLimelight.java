@@ -165,7 +165,7 @@ public class AluminatiLimelight implements AluminatiPoweredDevice {
     public boolean hasTarget() {
         checkCurrent();
 
-        if (tvEntry.getDouble(0) > 0) {
+        if (tvEntry.getDouble(0) == 1) {
             return true;
         } else {
             return false;
