@@ -101,7 +101,7 @@ public class AluminatiPigeon extends PigeonIMU implements AluminatiCriticalDevic
     public boolean isTipping() {
         double pitch = Math.abs(this.getPitch());
         double roll = Math.abs(this.getPitch());
-        double magnitude = Math.sqrt(Math.pow(pitch, 2) + Math.pow(roll, 2));
+        double magnitude = pitch + roll;
 
         if (magnitude >= AluminatiData.minTippingDegrees) {
             return true;
