@@ -54,6 +54,7 @@ import com.team319.follower.FollowsArc;
 import com.team319.follower.SrxMotionProfile;
 import com.team319.follower.SrxTrajectory;
 
+import org.aluminati3555.data.AluminatiData;
 import org.aluminati3555.output.AluminatiTalonSRX;
 
 public class FollowArc {
@@ -141,7 +142,7 @@ public class FollowArc {
 			point.arbFeedFwd = 0;
 
 			/* turn part */
-			point.auxiliaryPos = flippedLeftAndRight * 10 * (path[i][3]);
+			point.auxiliaryPos = flippedLeftAndRight * AluminatiData.pigeonTurnUnitsPerDegree * (path[i][3]);
 			point.auxiliaryVel = 0;
 			point.auxiliaryArbFeedFwd = 0;
 
