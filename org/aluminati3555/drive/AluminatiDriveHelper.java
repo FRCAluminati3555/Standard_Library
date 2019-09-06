@@ -58,11 +58,6 @@ public class AluminatiDriveHelper {
     private static final double THROTTLE_DEADBAND = 0.02;
     private static final double WHEEL_DEADBAND = 0.02;
 
-    // These factor determine how fast the wheel traverses the "non linear" sine
-    // curve.
-    private static final double HIGH_WHEEL_NONLINEARITY = 0.65;
-    private static final double LOW_WHEEL_NONLINEARITY = 0.5;
-
     private static final double HIGH_NEG_INERTIA_SCALAR = 4.0;
 
     private static final double LOW_NEG_INERTIA_THRESHOLD = 0.65;
@@ -126,22 +121,6 @@ public class AluminatiDriveHelper {
 
         double negInertia = wheel - mOldWheel;
         mOldWheel = wheel;
-
-        double wheelNonLinearity;
-        if (isHighGear) {
-            wheelNonLinearity = HIGH_WHEEL_NONLINEARITY;
-            final double denominator = Math.sin(Math.PI / 2.0 * wheelNonLinearity);
-            // Apply a sin function that's scaled to make it feel better.
-            wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / denominator;
-            wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / denominator;
-        } else {
-            wheelNonLinearity = LOW_WHEEL_NONLINEARITY;
-            final double denominator = Math.sin(Math.PI / 2.0 * wheelNonLinearity);
-            // Apply a sin function that's scaled to make it feel better.
-            wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / denominator;
-            wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / denominator;
-            wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / denominator;
-        }
 
         double leftPwm, rightPwm, overPower;
         double sensitivity;
