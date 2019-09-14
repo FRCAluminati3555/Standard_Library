@@ -138,7 +138,7 @@ public class AluminatiDoubleSolenoid extends DoubleSolenoid {
     }
 
     public AluminatiDoubleSolenoid(int pcm, int forwardPort, int reversePort) {
-        super(forwardPort, reversePort);
+        super(pcm, forwardPort, reversePort);
 
         this.pcm = pcm;
         this.forwardPort = forwardPort;
