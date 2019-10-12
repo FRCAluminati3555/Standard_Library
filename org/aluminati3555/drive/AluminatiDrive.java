@@ -145,7 +145,7 @@ public class AluminatiDrive implements AluminatiCriticalDevice, FollowsArc {
      */
     public void startMP(SrxTrajectory path, boolean zeroGyro) {
         stopMP();
-        follower = new FollowArc(this, path);
+        follower = new FollowArc(this, path, path.flipped, false);
 
         if (zeroGyro) {
             gyro.zeroYaw();
