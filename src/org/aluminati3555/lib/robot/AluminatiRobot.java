@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2018 Team319
+ * Copyright (c) 2019 Team 3555
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,21 +20,42 @@
  * SOFTWARE.
  */
 
-package com.team319.follower;
+package org.aluminati3555.lib.robot;
 
-//Generic Motion Profile Class
-public class SrxMotionProfile {
+import org.aluminati3555.lib.data.AluminatiData;
 
-	public int numPoints;
-	// Position (rotations) Velocity (RPM) Duration (ms)
-	public double[][] points;
+import edu.wpi.first.wpilibj.TimedRobot;
 
-	public SrxMotionProfile() {
-		
-	}
+/**
+ * This is team 3555's robot base class
+ * 
+ * @author Caleb Heydon
+ */
+public class AluminatiRobot extends TimedRobot {
+    /**
+     * Returns a useful string
+     */
+    @Override
+    public String toString() {
+        return "[AluminatiRobot] libraryVersion: " + AluminatiData.LIBRARY_VERSION + ", delay: " + this.getPeriod();
+    }
 
-	public SrxMotionProfile(int numPoints, double[][] points) {
-		this.numPoints = numPoints;
-		this.points = points;
-	}
+    /**
+     * Override this method to print
+     */
+    @Override
+    public void startCompetition() {
+        // Print when robot is initialized
+        System.out.println(this.toString());
+
+        super.startCompetition();
+    }
+
+    /**
+     * This constructor allows the delay to be changed by modifying the
+     * AluminatiData.robotDelay value before calling RobotBase.startRobot()
+     */
+    public AluminatiRobot() {
+        super(AluminatiData.robotDelay);
+    }
 }

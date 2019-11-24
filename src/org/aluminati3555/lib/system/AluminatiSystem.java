@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2018 Team319
+ * Copyright (c) 2019 Team 3555
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -8,8 +8,8 @@
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  * 
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -20,21 +20,18 @@
  * SOFTWARE.
  */
 
-package com.team319.follower;
+package org.aluminati3555.lib.system;
 
-//Generic Motion Profile Class
-public class SrxMotionProfile {
-
-	public int numPoints;
-	// Position (rotations) Velocity (RPM) Duration (ms)
-	public double[][] points;
-
-	public SrxMotionProfile() {
-		
-	}
-
-	public SrxMotionProfile(int numPoints, double[][] points) {
-		this.numPoints = numPoints;
-		this.points = points;
-	}
+/**
+ * This interface is for systems on the robot
+ * 
+ * @author Caleb Heydon
+ */
+public interface AluminatiSystem {
+    /**
+     * Updates the system
+     * @param timestamp The timestamp in milliseconds
+     * @param enabled True if the robot is enabled
+     */
+    public void update(double timestamp, boolean enabled);
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2018 Team319
+ * Copyright (c) 2019 Team 3555
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -8,8 +8,8 @@
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  * 
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -20,21 +20,36 @@
  * SOFTWARE.
  */
 
-package com.team319.follower;
+package org.aluminati3555.lib.auto;
 
-//Generic Motion Profile Class
-public class SrxMotionProfile {
+/**
+ * This interface allows for autonomous tasks to be standardized
+ * 
+ * @author Caleb Heydon
+ */
+public interface AluminatiAutoTask {
+    /**
+     * Initializes the task
+     */
+    public void start(double timestamp);
 
-	public int numPoints;
-	// Position (rotations) Velocity (RPM) Duration (ms)
-	public double[][] points;
+    /**
+     * Call this every loop
+     */
+    public void update(double timestamp);
 
-	public SrxMotionProfile() {
-		
-	}
+    /**
+     * Returns true when the task is complete
+     */
+    public boolean isComplete();
 
-	public SrxMotionProfile(int numPoints, double[][] points) {
-		this.numPoints = numPoints;
-		this.points = points;
-	}
+    /**
+     * Stops the auto task
+     */
+    public void stop();
+
+    /**
+     * Advances the state of the autonomous action
+     */
+    public void advanceState();
 }

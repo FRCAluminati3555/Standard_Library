@@ -54,12 +54,13 @@ import com.team319.follower.FollowsArc;
 import com.team319.follower.SrxMotionProfile;
 import com.team319.follower.SrxTrajectory;
 
-import org.aluminati3555.data.AluminatiData;
-import org.aluminati3555.output.AluminatiTalonSRX;
+import org.aluminati3555.lib.data.AluminatiData;
+import org.aluminati3555.lib.drivers.AluminatiTalonSRX;
 
 public class FollowArc {
-	private int distancePidSlot = 0;
-	private int rotationPidSlot = 1;
+	public static final int DISTANCE_PID_SLOT = 0;
+	public static final int ROTATION_PID_SLOT = 1;
+
 	private SrxTrajectory trajectory;
 	private boolean flipLeftAndRight;
 	private boolean flipRobot;
@@ -120,7 +121,6 @@ public class FollowArc {
 
 	private void loadBuffer(SrxTrajectory trajectory, double startPosition, boolean flipLeftAndRight,
 			boolean flipRobot) {
-
 		TrajectoryPoint point = new TrajectoryPoint(); // temp for for loop, since unused params are initialized
 														// automatically, you can alloc just one
 
@@ -146,8 +146,8 @@ public class FollowArc {
 			point.auxiliaryVel = 0;
 			point.auxiliaryArbFeedFwd = 0;
 
-			point.profileSlotSelect0 = distancePidSlot;
-			point.profileSlotSelect1 = rotationPidSlot;
+			point.profileSlotSelect0 = DISTANCE_PID_SLOT;
+			point.profileSlotSelect1 = ROTATION_PID_SLOT;
 			point.zeroPos = false;
 			point.isLastPoint = ((i + 1) == profile.numPoints);
 			point.useAuxPID = true;

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2018 Team319
+ * Copyright (c) 2019 Team 3555
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,21 +20,17 @@
  * SOFTWARE.
  */
 
-package com.team319.follower;
+package org.aluminati3555.lib.drivers;
 
-//Generic Motion Profile Class
-public class SrxMotionProfile {
+/**
+ * This is a general interface that allows devices that have output currents to be associated.
+ * 
+ * @author Caleb Heydon
+ */
 
-	public int numPoints;
-	// Position (rotations) Velocity (RPM) Duration (ms)
-	public double[][] points;
-
-	public SrxMotionProfile() {
-		
-	}
-
-	public SrxMotionProfile(int numPoints, double[][] points) {
-		this.numPoints = numPoints;
-		this.points = points;
-	}
+public interface AluminatiPoweredDevice {
+    /**
+     * Returns the output current
+     */
+    public double getOutputCurrent();
 }

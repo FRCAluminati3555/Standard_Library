@@ -31,6 +31,7 @@ public class SrxTrajectory {
 	public SrxMotionProfile rightProfile;
 
 	public SrxTrajectory() {
+		
 	}
 
 	public SrxTrajectory(SrxMotionProfile left, SrxMotionProfile center, SrxMotionProfile right) {

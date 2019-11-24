@@ -46,7 +46,7 @@
 
 package com.team319.follower;
 
-import org.aluminati3555.output.AluminatiTalonSRX;
+import org.aluminati3555.lib.drivers.AluminatiTalonSRX;
 
 public interface FollowsArc {
     public AluminatiTalonSRX getLeft();

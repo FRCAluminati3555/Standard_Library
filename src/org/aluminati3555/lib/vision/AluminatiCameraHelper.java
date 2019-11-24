@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2018 Team319
+ * Copyright (c) 2019 Team 3555
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -8,8 +8,8 @@
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  * 
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -20,21 +20,30 @@
  * SOFTWARE.
  */
 
-package com.team319.follower;
+package org.aluminati3555.lib.vision;
 
-//Generic Motion Profile Class
-public class SrxMotionProfile {
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 
-	public int numPoints;
-	// Position (rotations) Velocity (RPM) Duration (ms)
-	public double[][] points;
+/**
+ * This class provides tools for starting cameras
+ * 
+ * @author Caleb Heydon
+ */
+public class AluminatiCameraHelper {
+    /**
+     * Wrapper for camera server
+     * 
+     * @param device
+     * @return
+     */
+    public static UsbCamera[] start(int... device) {
+        UsbCamera[] cameras = new UsbCamera[device.length];
 
-	public SrxMotionProfile() {
-		
-	}
+        for (int i = 0; i < device.length; i++) {
+            cameras[i] = CameraServer.getInstance().startAutomaticCapture(i);
+        }
 
-	public SrxMotionProfile(int numPoints, double[][] points) {
-		this.numPoints = numPoints;
-		this.points = points;
-	}
+        return cameras;
+    }
 }
