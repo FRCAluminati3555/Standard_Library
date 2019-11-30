@@ -27,3 +27,29 @@ This library provides an easy way to interface with WPILIB.  It also includes so
   - CTRE Phoenix Library
 # Examples
   - https://github.com/FRCAluminati3555/Standard_Library_Example
+  
+# Testing robot code in VS Code
+```
+@Override
+  public void startCompetition() {
+    robotInit();
+
+    disabledInit();
+
+    for (double i = 0; i < 3; i += 0.02) {
+      robotPeriodic();
+      disabledPeriodic();
+      Timer.delay(0.02);
+    }
+
+    autonomousInit();
+    robotMode = RobotMode.AUTONOMOUS;
+    autoTask = new ModeExamplePath(robotState, driveSystem);
+
+    while (true) {
+      robotPeriodic();
+      autonomousPeriodic();
+      Timer.delay(0.02);
+    }
+  }
+```
