@@ -33,7 +33,7 @@ package org.aluminati3555.lib.data;
  */
 public final class AluminatiData {
     // Library
-    public static final int LIBRARY_VERSION = 3;
+    public static final int LIBRARY_VERSION = 4;
 
     // Robot delay
     public static double robotDelay = 0.02; // Seconds
@@ -49,20 +49,13 @@ public final class AluminatiData {
     public static double gyroI = 0;
     public static double gyroD = 0;
 
-    public static int primaryPIDSlot = 0;
-    public static int auxPIDSlot = 1;
-
     public static int iZone = 400;
-    public static int peakOutput = 1;
 
     // Deadband
     public static double deadband = 0.00001;
 
     // Encoders
     public static int encoderUnitsPerRotation = 4096;
-
-    // Pigeon
-    public static double pigeonTurnUnitsPerDegree = 8192 / 360.0;
 
     // TalonSRX minimum firmware version
     public static int minTalonSRXFirmareVersion = 0;
