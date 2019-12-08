@@ -55,6 +55,9 @@ public class AluminatiRobot extends TimedRobot {
         super.startCompetition();
     }
 
+    /**
+     * Override this method to find dt
+     */
     @Override
     public void loopFunc() {
         super.loopFunc();
