@@ -65,7 +65,7 @@ public abstract class AluminatiTunable extends Thread {
      */
     @Override
     public void run() {
-        while (true) {
+        while (!DriverStation.getInstance().isFMSAttached()) {
             try {
                 socket.receive(packet);
 
@@ -83,6 +83,8 @@ public abstract class AluminatiTunable extends Thread {
                 continue;
             }
         }
+
+        socket.close();
     }
 
     public AluminatiTunable(int port) {
