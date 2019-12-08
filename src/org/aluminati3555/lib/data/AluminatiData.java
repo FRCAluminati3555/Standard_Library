@@ -39,10 +39,10 @@ public final class AluminatiData {
     public static double robotDelay = 0.02; // Seconds
 
     // PID
-    public static double encoderF = 1;
-    public static double encoderP = 1;
-    public static double encoderI = 0;
-    public static double encoderD = 0;
+    public static double velocityKF = 1;
+    public static double velocityKP = 1;
+    public static double velocityKI = 0;
+    public static double velocityKD = 0;
 
     public static int iZone = 400;
 

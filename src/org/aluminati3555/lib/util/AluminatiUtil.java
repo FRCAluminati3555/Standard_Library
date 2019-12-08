@@ -28,16 +28,16 @@ public class AluminatiUtil {
         right.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 5);
 
         // Configure pid for velocity mode (used in path following)
-        left.config_kF(0, AluminatiData.encoderF);
-        left.config_kP(0, AluminatiData.encoderP);
-        left.config_kI(0, AluminatiData.encoderI);
-        left.config_kD(0, AluminatiData.encoderD);
+        left.config_kF(0, AluminatiData.velocityKF);
+        left.config_kP(0, AluminatiData.velocityKP);
+        left.config_kI(0, AluminatiData.velocityKI);
+        left.config_kD(0, AluminatiData.velocityKD);
         left.config_IntegralZone(0, AluminatiData.iZone);
 
-        right.config_kF(0, AluminatiData.encoderF);
-        right.config_kP(0, AluminatiData.encoderP);
-        right.config_kI(0, AluminatiData.encoderI);
-        right.config_kD(0, AluminatiData.encoderD);
+        right.config_kF(0, AluminatiData.velocityKF);
+        right.config_kP(0, AluminatiData.velocityKP);
+        right.config_kI(0, AluminatiData.velocityKI);
+        right.config_kD(0, AluminatiData.velocityKD);
         right.config_IntegralZone(0, AluminatiData.iZone);
     }
 
