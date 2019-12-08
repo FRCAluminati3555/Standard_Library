@@ -91,6 +91,7 @@ public class AluminatiPIDController {
         synchronized (this) {
             double error = setpoint - currentPoint;
             double dt = timestamp - lastTimestamp;
+            lastTimestamp = timestamp;
 
             integral += error * dt;
             if (integral >= iZone) {
