@@ -82,14 +82,6 @@ public class AluminatiPigeon extends PigeonIMU implements AluminatiGyro {
     }
 
     /**
-     * Zeros the heading
-     */
-    public void zeroHeading() {
-        // Zero gyro heading
-        this.setFusedHeading(0);
-    }
-
-    /**
      * Returns the heading
      * 
      * @return
@@ -112,7 +104,7 @@ public class AluminatiPigeon extends PigeonIMU implements AluminatiGyro {
         // Reset
         this.configFactoryDefault();
 
-        zeroHeading();
+        setHeading(Rotation2d.fromDegrees(0));
     }
 
     /**
