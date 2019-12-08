@@ -100,7 +100,7 @@ public class AluminatiPIDController {
 
             double p = kP * error;
             double i = kI * integral;
-            double d = kD * (error - lastError);
+            double d = kD * (error - lastError) / dt;
             lastError = error;
 
             double output = p + i + d;
