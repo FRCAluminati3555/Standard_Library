@@ -20,7 +20,8 @@ This library provides an easy way to interface with WPILIB.  It also includes so
   - A wrapper class from the Limelight which supports all commonly used features
   - Support for detecting motor controller, encoder, and gyro failures
   - TalonSRX and VictorSPX firmware version validation
-  - Motion profile arc following using a modified version of BobTrajectory
+  - Pure pursuit path following using 254's code
+  - Support for dual gyros
 # Dependencies
   - Java 11+
   - WPILIB
