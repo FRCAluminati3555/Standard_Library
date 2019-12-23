@@ -88,7 +88,7 @@ public abstract class AluminatiTunable extends Thread {
     }
 
     public AluminatiTunable(int port) {
-        System.out.println("Starting UDP listener on port " + port + "...");
+        System.out.println("Starting UDP listener for Tunable on port " + port + "...");
 
         this.port = port;
         try {

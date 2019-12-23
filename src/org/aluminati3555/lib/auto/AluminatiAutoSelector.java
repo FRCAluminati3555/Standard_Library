@@ -27,9 +27,11 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.SocketException;
 import java.util.ArrayList;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
@@ -38,6 +40,8 @@ import edu.wpi.first.wpilibj.Timer;
  * @author Caleb Heydon
  */
 public class AluminatiAutoSelector extends Thread {
+    private static final int PACKET_LENGTH = 64;
+
     private int port;
     private ArrayList<Entry> entries;
 
@@ -126,7 +130,20 @@ public class AluminatiAutoSelector extends Thread {
     }
 
     public AluminatiAutoSelector(int port, Entry... entries) {
+        System.out.println("Starting UDP listener for AutoSelector on port " + port + "...");
+
         this.port = port;
+        try {
+            this.socket = new DatagramSocket(port);
+        } catch (SocketException e) {
+            DriverStation.reportError("Unable to start UDP listener on port " + port, false);
+            return;
+        }
+        this.packet = new DatagramPacket(new byte[PACKET_LENGTH], PACKET_LENGTH);
+
+        super.setName("Auto-Selector");
+        super.setPriority(Thread.MIN_PRIORITY);
+        super.start();
 
         this.entries = new ArrayList<Entry>();
         for (int i = 0; i < entries.length; i++) {
