@@ -136,7 +136,7 @@ public class AluminatiAutoSelector extends Thread {
         publish();
     }
 
-    public class Entry {
+    public static class Entry {
         public String name;
         public AluminatiAutoTask mode;
 
