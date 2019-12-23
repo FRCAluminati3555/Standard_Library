@@ -71,7 +71,7 @@ public class AluminatiDoubleSolenoid extends DoubleSolenoid {
      */
     @Override
     public String toString() {
-        return "[DoubleSolenoid:" + forwardPort + ":" + reversePort + "] value: " + this.get();
+        return "[DoubleSolenoid:" + pcm + ":" + forwardPort + ":" + reversePort + "] value: " + this.get();
     }
 
     /**

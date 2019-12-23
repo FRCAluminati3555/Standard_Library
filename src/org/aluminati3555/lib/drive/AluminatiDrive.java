@@ -434,7 +434,6 @@ public class AluminatiDrive implements AluminatiCriticalDevice {
             } else if (driveState == DriveState.PATH_FOLLOWING && isPathDone()) {
                 // Reset masters
                 resetMasters();
-
                 driveState = DriveState.OPEN_LOOP;
             }
 

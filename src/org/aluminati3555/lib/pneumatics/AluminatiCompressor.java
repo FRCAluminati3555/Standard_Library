@@ -45,7 +45,7 @@ public class AluminatiCompressor extends Compressor {
      */
     @Override
     public String toString() {
-        return "[Compressor] running: " + this.enabled();
+        return "[Compressor:" + pcm + "] running: " + this.enabled();
     }
 
     /**

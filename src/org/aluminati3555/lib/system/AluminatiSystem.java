@@ -30,8 +30,9 @@ package org.aluminati3555.lib.system;
 public interface AluminatiSystem {
     /**
      * Updates the system
+     * 
      * @param timestamp The timestamp in milliseconds
-     * @param enabled True if the robot is enabled
+     * @param enabled   True if the robot is enabled
      */
     public void update(double timestamp, boolean enabled);
 }

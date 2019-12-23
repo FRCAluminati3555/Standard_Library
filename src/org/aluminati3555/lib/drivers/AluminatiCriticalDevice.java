@@ -28,10 +28,9 @@ package org.aluminati3555.lib.drivers;
  * @author Caleb Heydon
  */
 
- public interface AluminatiCriticalDevice {
-     /**
-      * Returns true if the sensor is ok
-      */
-     public boolean isOK();
- }
- 
+public interface AluminatiCriticalDevice {
+    /**
+     * Returns true if the sensor is ok
+     */
+    public boolean isOK();
+}

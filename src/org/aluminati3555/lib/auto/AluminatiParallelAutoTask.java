@@ -38,6 +38,7 @@ public class AluminatiParallelAutoTask implements AluminatiAutoTask {
 
     /**
      * Returns the array of tasks
+     * 
      * @return
      */
     public AluminatiAutoTask[] getTasks() {
@@ -76,7 +77,7 @@ public class AluminatiParallelAutoTask implements AluminatiAutoTask {
 
     }
 
-    public AluminatiParallelAutoTask(AluminatiAutoTask ... tasks) {
+    public AluminatiParallelAutoTask(AluminatiAutoTask... tasks) {
         this.tasks = tasks;
     }
 }

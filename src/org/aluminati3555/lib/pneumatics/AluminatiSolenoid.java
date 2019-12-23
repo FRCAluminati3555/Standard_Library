@@ -52,7 +52,7 @@ public class AluminatiSolenoid extends Solenoid {
      */
     @Override
     public String toString() {
-        return "[Solenoid:" + port + "] value: " + this.get();
+        return "[Solenoid:" + pcm + ":" + port + "] value: " + this.get();
     }
 
     /**
@@ -66,6 +66,7 @@ public class AluminatiSolenoid extends Solenoid {
 
     /**
      * Returns true if the solenoid is off
+     * 
      * @return
      */
     public boolean isDisabled() {

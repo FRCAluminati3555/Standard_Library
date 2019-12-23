@@ -80,7 +80,7 @@ public class AluminatiAutoTaskList implements AluminatiAutoTask {
      * Does nothing
      */
     public void advanceState() {
-        
+
     }
 
     /**

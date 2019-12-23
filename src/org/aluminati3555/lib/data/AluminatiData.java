@@ -65,7 +65,7 @@ public final class AluminatiData {
 
     // Drive characterization
     public static double scrubFactor = 1;
-    public static double driveWidth = 20;  // Inches
+    public static double driveWidth = 20; // Inches
 
     // Pure pursuit
     public static double maxTrackerDistance = 9;

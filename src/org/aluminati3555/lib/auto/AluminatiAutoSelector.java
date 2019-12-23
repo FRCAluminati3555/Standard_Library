@@ -92,14 +92,14 @@ public class AluminatiAutoSelector extends Thread {
             if (autoMode != null) {
                 return autoMode;
             }
-    
+
             String auto = NetworkTableInstance.getDefault().getTable("SmartDashboard").getEntry("Auto Selector")
                     .getString(null);
-    
+
             if (auto == null) {
                 return null;
             }
-    
+
             select(auto);
             return autoMode;
         }

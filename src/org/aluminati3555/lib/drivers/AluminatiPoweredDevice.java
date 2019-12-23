@@ -23,7 +23,8 @@
 package org.aluminati3555.lib.drivers;
 
 /**
- * This is a general interface that allows devices that have output currents to be associated.
+ * This is a general interface that allows devices that have output currents to
+ * be associated.
  * 
  * @author Caleb Heydon
  */

@@ -9,7 +9,8 @@ import com.team254.lib.geometry.Translation2d;
 import java.util.List;
 
 /**
- * Class used to convert a list of Waypoints into a Path object consisting of arc and line PathSegments
+ * Class used to convert a list of Waypoints into a Path object consisting of
+ * arc and line PathSegments
  *
  * @see Waypoint
  * @see Path
@@ -44,9 +45,10 @@ public class PathBuilder {
     }
 
     /**
-     * A waypoint along a path. Contains a position, radius (for creating curved paths), and speed. The information from
-     * these waypoints is used by the PathBuilder class to generate Paths. Waypoints also contain an optional marker
-     * that is used by the WaitForPathMarkerAction.
+     * A waypoint along a path. Contains a position, radius (for creating curved
+     * paths), and speed. The information from these waypoints is used by the
+     * PathBuilder class to generate Paths. Waypoints also contain an optional
+     * marker that is used by the WaitForPathMarkerAction.
      *
      * @see PathBuilder
      * @see WaitForPathMarkerAction
@@ -82,7 +84,8 @@ public class PathBuilder {
     }
 
     /**
-     * A Line object is formed by two Waypoints. Contains a start and end position, slope, and speed.
+     * A Line object is formed by two Waypoints. Contains a start and end position,
+     * slope, and speed.
      */
     static class Line {
         Waypoint a;
@@ -117,7 +120,8 @@ public class PathBuilder {
     }
 
     /**
-     * An Arc object is formed by two Lines that share a common Waypoint. Contains a center position, radius, and speed.
+     * An Arc object is formed by two Lines that share a common Waypoint. Contains a
+     * center position, radius, and speed.
      */
     static class Arc {
         Line a;

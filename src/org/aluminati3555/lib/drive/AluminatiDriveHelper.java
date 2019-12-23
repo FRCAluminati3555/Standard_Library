@@ -164,8 +164,7 @@ public class AluminatiDriveHelper {
         if (isQuickTurn) {
             if (Math.abs(linearPower) < quickStopDeadband) {
                 double alpha = quickStopWeight;
-                mQuickStopAccumlator = (1 - alpha) * mQuickStopAccumlator
-                        + alpha * limit(wheel, 1.0) * quickStopScalar;
+                mQuickStopAccumlator = (1 - alpha) * mQuickStopAccumlator + alpha * limit(wheel, 1.0) * quickStopScalar;
             }
             overPower = 1.0;
             angularPower = wheel;
