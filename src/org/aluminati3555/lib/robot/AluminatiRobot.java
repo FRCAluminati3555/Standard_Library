@@ -23,6 +23,7 @@
 package org.aluminati3555.lib.robot;
 
 import org.aluminati3555.lib.data.AluminatiData;
+import org.aluminati3555.lib.math.AluminatiIntegralAverage;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
@@ -35,13 +36,14 @@ import edu.wpi.first.wpilibj.Timer;
 public class AluminatiRobot extends TimedRobot {
     private double lastTime;
     private double dt;
+    private AluminatiIntegralAverage averageDT;
 
     /**
      * Returns a useful string
      */
     @Override
     public String toString() {
-        return "[AluminatiRobot] libraryVersion: " + AluminatiData.LIBRARY_VERSION + ", delay: " + this.getPeriod();
+        return "[AluminatiRobot] libraryVersion: " + AluminatiData.LIBRARY_VERSION + ", targetDT: " + this.getPeriod();
     }
 
     /**
@@ -65,6 +67,7 @@ public class AluminatiRobot extends TimedRobot {
         double time = Timer.getFPGATimestamp();
         dt = time - lastTime;
         lastTime = time;
+        averageDT.add(dt);
     }
 
     /**
@@ -77,11 +80,20 @@ public class AluminatiRobot extends TimedRobot {
     }
 
     /**
+     * Returns the average dt
+     */
+    public double getAverageDT() {
+        return averageDT.getAverage();
+    }
+
+    /**
      * This constructor allows the delay to be changed by modifying the
      * AluminatiData.robotDelay value before calling RobotBase.startRobot()
      */
     public AluminatiRobot() {
         super(AluminatiData.robotDelay);
         lastTime = Timer.getFPGATimestamp();
+
+        averageDT = new AluminatiIntegralAverage();
     }
 }

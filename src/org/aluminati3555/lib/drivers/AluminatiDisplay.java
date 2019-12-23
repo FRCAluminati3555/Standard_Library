@@ -20,6 +20,11 @@ public class AluminatiDisplay {
     private static final byte[] BLINK = { (byte) 0x81 };
     private static final byte[] BRIGHT = { (byte) 0xEF };
 
+    @Override
+    public String toString() {
+        return "[Diplay]";
+    }
+
     /**
      * Creates a string by repeating chars
      */
@@ -36,11 +41,6 @@ public class AluminatiDisplay {
 
     byte[][] characterRegister;
     HashMap<Character, Integer> characterMap;
-
-    @Override
-    public String toString() {
-        return "[Display]";
-    }
 
     /**
      * Returns true if the button is down

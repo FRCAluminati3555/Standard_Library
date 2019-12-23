@@ -15,6 +15,11 @@ import java.util.Map;
 public class RobotState {
     private static final int kObservationBufferSize = 100;
 
+    @Override
+    public String toString() {
+        return "[RobotState]";
+    }
+
     // FPGATimestamp -> RigidTransform2d or Rotation2d
     private InterpolatingTreeMap<InterpolatingDouble, Pose2d> field_to_vehicle_;
     private Twist2d vehicle_velocity_predicted_;

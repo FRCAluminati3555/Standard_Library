@@ -32,6 +32,11 @@ public class AluminatiIntegralAverage {
     private double sum;
     private int i;
 
+    @Override
+    public String toString() {
+        return "[IntegralAverage]";
+    }
+
     /**
      * Returns the current average
      */

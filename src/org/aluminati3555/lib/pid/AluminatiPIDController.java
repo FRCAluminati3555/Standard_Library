@@ -28,6 +28,11 @@ package org.aluminati3555.lib.pid;
 public class AluminatiPIDController {
     private static final double DEFAULT_IZONE = 400;
 
+    @Override
+    public String toString() {
+        return "[PIDController]";
+    }
+
     // PID values
     private double kP;
     private double kI;

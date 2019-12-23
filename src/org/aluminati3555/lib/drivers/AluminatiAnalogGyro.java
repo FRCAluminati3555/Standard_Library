@@ -31,7 +31,13 @@ public class AluminatiAnalogGyro extends AnalogGyro implements AluminatiGyro {
     // https://github.com/Team217/FRC-217-Libraries/blob/master/org/team217/wpi/AnalogGyro.java
     // for offset
 
+    private int channel;
     private double offset;
+
+    @Override
+    public String toString() {
+        return "[AnalogGyro:" + channel + "]";
+    }
 
     /**
      * Returns true if the gyro is ok
@@ -58,5 +64,6 @@ public class AluminatiAnalogGyro extends AnalogGyro implements AluminatiGyro {
 
     public AluminatiAnalogGyro(int channel) {
         super(channel);
+        this.channel = channel;
     }
 }

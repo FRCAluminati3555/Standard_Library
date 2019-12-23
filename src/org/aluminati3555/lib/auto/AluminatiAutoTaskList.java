@@ -34,6 +34,11 @@ public class AluminatiAutoTaskList implements AluminatiAutoTask {
     private ArrayList<AluminatiAutoTask> taskList;
     private int taskIndex;
 
+    @Override
+    public String toString() {
+        return "[AutoTaskList]";
+    }
+
     public void start(double timestamp) {
         taskList.get(taskIndex).start(timestamp);
     }

@@ -36,6 +36,11 @@ public class AluminatiDualGyro implements AluminatiGyro {
     private AluminatiGyro gyro1;
     private AluminatiGyro gyro2;
 
+    @Override
+    public String toString() {
+        return "[DualGyro]";
+    }
+
     /**
      * Returns true if both gyros are ok
      */

@@ -67,6 +67,11 @@ public class AluminatiDrive implements AluminatiCriticalDevice {
     private double controlCoefficient;
     private boolean inverted;
 
+    @Override
+    public String toString() {
+        return "[Drive]";
+    }
+
     /**
      * Returns the state of the drive
      * 

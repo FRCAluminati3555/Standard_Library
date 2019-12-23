@@ -38,7 +38,7 @@ public class AluminatiPigeon extends PigeonIMU implements AluminatiGyro {
      */
     @Override
     public String toString() {
-        return "[PigeonIMU:" + super.getDeviceID() + "]";
+        return "[Pigeon:" + super.getDeviceID() + "]";
     }
 
     /**

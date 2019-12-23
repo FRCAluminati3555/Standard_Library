@@ -25,6 +25,11 @@ package org.aluminati3555.lib.pid;
 import org.aluminati3555.lib.net.AluminatiTunable;
 
 public class AluminatiTunablePIDController extends AluminatiPIDController {
+    @Override
+    public String toString() {
+        return "[TunablePIDController]";
+    }
+
     private void startListener(int port) {
         new AluminatiTunable(port) {
             protected void update(TuningData data) {

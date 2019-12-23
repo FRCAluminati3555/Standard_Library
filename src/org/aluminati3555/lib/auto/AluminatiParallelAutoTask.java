@@ -31,6 +31,11 @@ public class AluminatiParallelAutoTask implements AluminatiAutoTask {
     // The tasks
     private AluminatiAutoTask[] tasks;
 
+    @Override
+    public String toString() {
+        return "[ParallelAutoTask]";
+    }
+
     /**
      * Returns the array of tasks
      * @return

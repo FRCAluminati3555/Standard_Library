@@ -20,6 +20,11 @@ import java.util.List;
 public class Looper {
     public final double kPeriod = AluminatiData.looperDT;
 
+    @Override
+    public String toString() {
+        return "[Looper]";
+    }
+
     private boolean mRunning;
 
     private final Notifier mNotifier;
