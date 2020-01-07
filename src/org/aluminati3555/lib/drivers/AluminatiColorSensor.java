@@ -58,7 +58,7 @@ public class AluminatiColorSensor extends ColorSensorV3 {
         super(I2C.Port.kOnboard);
     }
 
-    public class RGB {
+    public static class RGB {
         private double r;
         private double g;
         private double b;
