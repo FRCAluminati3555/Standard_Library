@@ -39,7 +39,7 @@ public class AluminatiTalonFX extends TalonFX implements AluminatiPoweredDevice,
     // Fault buffer
     private Faults faults;
 
-    private boolean versionOK;
+    private boolean firmwareOK;
 
     /**
      * Provides a useful string about the motor controller
@@ -54,7 +54,7 @@ public class AluminatiTalonFX extends TalonFX implements AluminatiPoweredDevice,
      */
     public boolean isOK() {
         this.getFaults(faults);
-        boolean ok = (!faults.hasAnyFault() && versionOK);
+        boolean ok = (!faults.hasAnyFault() && firmwareOK);
 
         return ok;
     }
@@ -65,10 +65,10 @@ public class AluminatiTalonFX extends TalonFX implements AluminatiPoweredDevice,
      */
     private void checkFirmwareVersion() {
         if (this.getFirmwareVersion() < AluminatiData.minTalonFXFirmwareVersion) {
-            versionOK = false;
+            firmwareOK = false;
             DriverStation.reportWarning(this.toString() + " has too old of firmware (may not work)", false);
         } else {
-            versionOK = true;
+            firmwareOK = true;
         }
     }
 

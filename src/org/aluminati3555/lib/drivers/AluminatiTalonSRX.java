@@ -40,7 +40,7 @@ public class AluminatiTalonSRX extends TalonSRX implements AluminatiPoweredDevic
     // Fault buffer
     private Faults faults;
 
-    private boolean versionOK;
+    private boolean firmwareOK;
 
     /**
      * Provides a useful string about the motor controller
@@ -63,7 +63,7 @@ public class AluminatiTalonSRX extends TalonSRX implements AluminatiPoweredDevic
      */
     public boolean isOK() {
         this.getFaults(faults);
-        boolean ok = (!faults.hasAnyFault() && versionOK);
+        boolean ok = (!faults.hasAnyFault() && firmwareOK);
 
         return ok;
     }
@@ -74,10 +74,10 @@ public class AluminatiTalonSRX extends TalonSRX implements AluminatiPoweredDevic
      */
     private void checkFirmwareVersion() {
         if (this.getFirmwareVersion() < AluminatiData.minTalonSRXFirmwareVersion) {
-            versionOK = false;
+            firmwareOK = false;
             DriverStation.reportWarning(this.toString() + " has too old of firmware (may not work)", false);
         } else {
-            versionOK = true;
+            firmwareOK = true;
         }
     }
 
