@@ -35,7 +35,8 @@ import edu.wpi.first.wpilibj.DriverStation;
  * 
  * @author Caleb Heydon
  */
-public class AluminatiTalonFX extends TalonFX implements AluminatiPoweredDevice, AluminatiCriticalDevice {
+public class AluminatiTalonFX extends TalonFX
+        implements AluminatiPoweredDevice, AluminatiCriticalDevice, AluminatiMotorController {
     // Fault buffer
     private Faults faults;
 
@@ -47,6 +48,13 @@ public class AluminatiTalonFX extends TalonFX implements AluminatiPoweredDevice,
     @Override
     public String toString() {
         return "[TalonFX:" + this.getDeviceID() + "]";
+    }
+
+    /**
+     * Empty method that warns drivers
+     */
+    public void follow(AluminatiSparkMax motorController) {
+        DriverStation.reportWarning(this.toString() + " is unable to follow REV motor controllers", false);
     }
 
     /**

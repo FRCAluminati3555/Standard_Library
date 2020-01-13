@@ -22,6 +22,9 @@
 
 package org.aluminati3555.lib.drivers;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.IMotorController;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.ControlType;
@@ -35,7 +38,8 @@ import edu.wpi.first.wpilibj.DriverStation;
  * 
  * @author Caleb Heydon
  */
-public class AluminatiSparkMax extends CANSparkMax implements AluminatiPoweredDevice, AluminatiCriticalDevice {
+public class AluminatiSparkMax extends CANSparkMax
+        implements AluminatiPoweredDevice, AluminatiCriticalDevice, AluminatiMotorController {
     private boolean firmwareOK;
 
     private CANPIDController pidController;
@@ -80,13 +84,47 @@ public class AluminatiSparkMax extends CANSparkMax implements AluminatiPoweredDe
     }
 
     /**
+     * Returns the can device id
+     */
+    public int getDeviceID() {
+        return this.getDeviceId();
+    }
+
+    /**
+     * Sets the motor controller's neutral mode
+     */
+    public void setNeutralMode(NeutralMode neutralMode) {
+        if (neutralMode == NeutralMode.Brake) {
+            this.setIdleMode(IdleMode.kBrake);
+        } else if (neutralMode == NeutralMode.Coast) {
+            this.setIdleMode(IdleMode.kCoast);
+        }
+    }
+
+    /**
+     * Empty method with driverstation error (don't follow ctre motor controllers)
+     */
+    public void follow(IMotorController motorController) {
+        DriverStation.reportWarning(this.toString() + " is unable to follow CTRE motor controllers", false);
+    }
+
+    /**
+     * Follows another spark max
+     */
+    public void follow(AluminatiSparkMax sparkMax) {
+        this.follow(sparkMax);
+    }
+
+    /**
      * Sets the motor controller output
      */
-    public void set(SparkMaxControlMode controlMode, double x) {
-        if (controlMode == SparkMaxControlMode.PERCENT) {
+    public void set(ControlMode controlMode, double x) {
+        if (controlMode == ControlMode.PercentOutput) {
             this.set(x);
-        } else if (controlMode == SparkMaxControlMode.VELOCITY) {
+        } else if (controlMode == ControlMode.Velocity) {
             pidController.setReference(x, ControlType.kVelocity);
+        } else {
+            DriverStation.reportWarning(this.toString() + " is unable to use the specified control mode", false);
         }
     }
 
@@ -137,9 +175,5 @@ public class AluminatiSparkMax extends CANSparkMax implements AluminatiPoweredDe
 
         setupSparkMax();
         this.pidController = this.getPIDController();
-    }
-
-    public enum SparkMaxControlMode {
-        PERCENT, VELOCITY
     }
 }

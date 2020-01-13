@@ -95,6 +95,13 @@ public class AluminatiVictorSPX extends VictorSPX implements AluminatiPoweredDev
     }
 
     /**
+     * Empty method that warns drivers
+     */
+    public void follow(AluminatiSparkMax motorController) {
+        DriverStation.reportWarning(this.toString() + " is unable to follow REV motor controllers", false);
+    }
+
+    /**
      * Returns the output current of the motor controller
      */
     @Override

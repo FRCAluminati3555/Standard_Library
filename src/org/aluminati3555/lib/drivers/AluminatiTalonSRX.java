@@ -51,6 +51,13 @@ public class AluminatiTalonSRX extends TalonSRX implements AluminatiPoweredDevic
     }
 
     /**
+     * Empty method that warns drivers
+     */
+    public void follow(AluminatiSparkMax motorController) {
+        DriverStation.reportWarning(this.toString() + " is unable to follow REV motor controllers", false);
+    }
+
+    /**
      * Returns true if the encoder is ok
      */
     public boolean isEncoderOK() {
