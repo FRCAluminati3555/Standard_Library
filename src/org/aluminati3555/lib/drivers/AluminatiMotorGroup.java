@@ -50,6 +50,17 @@ public class AluminatiMotorGroup implements AluminatiCriticalDevice {
     }
 
     /**
+     * Returns the master spark max
+     */
+    public AluminatiSparkMax getMasterSparkMax() {
+        if (!(master instanceof AluminatiSparkMax)) {
+            return null;
+        }
+
+        return (AluminatiSparkMax) master;
+    }
+
+    /**
      * Returns the master motor controller
      */
     public AluminatiMotorController getMaster() {
