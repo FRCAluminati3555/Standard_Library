@@ -36,7 +36,8 @@ import edu.wpi.first.wpilibj.DriverStation;
  * @author Caleb Heydon
  */
 
-public class AluminatiTalonSRX extends TalonSRX implements AluminatiPoweredDevice, AluminatiCriticalDevice {
+public class AluminatiTalonSRX extends TalonSRX
+        implements AluminatiPoweredDevice, AluminatiCriticalDevice, AluminatiMotorController {
     // Fault buffer
     private Faults faults;
 

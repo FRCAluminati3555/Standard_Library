@@ -37,7 +37,8 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
  * 
  * @author Caleb Heydon
  */
-public class AluminatiVictorSPX extends VictorSPX implements AluminatiPoweredDevice, AluminatiCriticalDevice {
+public class AluminatiVictorSPX extends VictorSPX
+        implements AluminatiPoweredDevice, AluminatiCriticalDevice, AluminatiMotorController {
     // Faults
     private Faults faults;
 
