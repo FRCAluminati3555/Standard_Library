@@ -1,6 +1,6 @@
 # FRC Team 3555's Standard Java Library
 
-This library provides an easy way to interface with WPILIB.  It also includes some helper classes for programming a robot.  The library includes various wrapper classes to ease programming and to make the robot more reliable (e.i. setting factory defaults).
+This library provides an easy way to interface with WPILIB.  It also includes some helper classes for programming a robot.  The library includes various wrapper classes to ease programming and to make the robot more reliable (setting factory defaults).
 
 ![Robot.java](https://github.com/FRCAluminati3555/Standard_Library/raw/master/wiki/robot_class.png)
 
